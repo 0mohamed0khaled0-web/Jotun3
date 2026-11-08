@@ -1,0 +1,197 @@
+import { SecurityGuard, HseOfficer, ZoneInspection, MeterReading } from '../types';
+
+export const INITIAL_SECURITY_GUARDS: SecurityGuard[] = [
+  { id: 'g-1', name: 'محمد احمد عيد', isActive: true },
+  { id: 'g-2', name: 'بهاء سماره', isActive: true },
+  { id: 'g-3', name: 'محمد خالد', isActive: true },
+  { id: 'g-4', name: 'احمد صابر', isActive: true },
+  { id: 'g-5', name: 'هادي جمال', isActive: true },
+  { id: 'g-6', name: 'محمود فتحي', isActive: true },
+  { id: 'g-7', name: 'محمد طارق', isActive: true },
+  { id: 'g-8', name: 'وليد عبدالنور', isActive: true },
+  { id: 'g-9', name: 'هاني السيد', isActive: true },
+  { id: 'g-10', name: 'هاني شعبان', isActive: true },
+  { id: 'g-11', name: 'محمود البسراوي', isActive: true },
+  { id: 'g-12', name: 'عمار', isActive: true },
+  { id: 'g-13', name: 'الطيب محمدين', isActive: true },
+  { id: 'g-14', name: 'محمد محمود', isActive: true },
+];
+
+export const INITIAL_HSE_OFFICERS: HseOfficer[] = [
+  { id: 'hse-1', name: 'حاتم عطا', isActive: true },
+  { id: 'hse-2', name: 'محمد عبد الغني', isActive: true },
+];
+
+export const INITIAL_ZONES: ZoneInspection[] = [
+  {
+    id: 'zone-1',
+    code: 'JOTUN-ZONE-01-HOUSING',
+    name: 'الإسكان',
+    description: 'مباني سكن العاملين والمرافق ومحيط السور الخارجي',
+    isScanned: false,
+    status: 'unvisited',
+    notes: '',
+    checklist: [
+      { id: 'c1', label: 'سلامة الأبواب ومخارج الطوارئ', checked: false },
+      { id: 'c2', label: 'جاهزية طفايات الحريق وخراطيم المياه', checked: false },
+      { id: 'c3', label: 'كفاءة إنارة الممرات والسلالم', checked: false },
+      { id: 'c4', label: 'خلو الممرات من أي عوائق أو إشغالات', checked: false },
+    ],
+  },
+  {
+    id: 'zone-2',
+    code: 'JOTUN-ZONE-02-LOADING-YARD',
+    name: 'ساحة التحميل',
+    description: 'ساحة انتظار ورص شاحنات نقل البضائع الجاهزة',
+    isScanned: false,
+    status: 'unvisited',
+    notes: '',
+    checklist: [
+      { id: 'c1', label: 'التزام سائقي الشاحنات بإرشادات السرعة والأمان', checked: false },
+      { id: 'c2', label: 'خلو ساحة المناورة من التسريبات البترولية', checked: false },
+      { id: 'c3', label: 'ارتداء مهمات الوقاية الشخصية (PPE) للسائقين', checked: false },
+      { id: 'c4', label: 'توافر حواجز ومصدات العجلات (Wheel Chocks)', checked: false },
+    ],
+  },
+  {
+    id: 'zone-3',
+    code: 'JOTUN-ZONE-03-LOADING-DOCK',
+    name: 'رصيف التحميل',
+    description: 'أرصفة تحميل سيارات شحن دهانات يوتن للعملاء والموزعين',
+    isScanned: false,
+    status: 'unvisited',
+    notes: '',
+    checklist: [
+      { id: 'c1', label: 'سلامة منصات الهيدروليك وجسور التحميل', checked: false },
+      { id: 'c2', label: 'عدم وجود بضائع متراكمة أو مائلة تعيق الحركة', checked: false },
+      { id: 'c3', label: 'التشغيل الآمن للرافعات الشوكية (Forklifts)', checked: false },
+      { id: 'c4', label: 'جاهزية كبائن الإطفاء وأجهزة الإنذار', checked: false },
+    ],
+  },
+  {
+    id: 'zone-4',
+    code: 'JOTUN-ZONE-04-PUMP-ROOM',
+    name: 'غرفة الطلمبات',
+    description: 'محطة طلمبات مكافحة الحريق الرئيسية (جوكي + 2 ديزل) وخزانات المياه',
+    isScanned: false,
+    status: 'unvisited',
+    notes: '',
+    checklist: [
+      { id: 'c1', label: 'محابس السحب والطرد مفتوحة ومقفلة بالسلاسل', checked: false },
+      { id: 'c2', label: 'مستويات الوقود والزيت في محركات الديزل مطابقة', checked: false },
+      { id: 'c3', label: 'شواحن البطاريات تعمل والجهد الكهربائي مستقر', checked: false },
+      { id: 'c4', label: 'لوحات التحكم الآلي على وضع (Auto)', checked: false },
+    ],
+  },
+  {
+    id: 'zone-5',
+    code: 'JOTUN-ZONE-05-WATER-TREATMENT',
+    name: 'وحدة معالجة المياه',
+    description: 'محطة معالجة المياه الصناعية وتصريف المخلفات السائلة',
+    isScanned: false,
+    status: 'unvisited',
+    notes: '',
+    checklist: [
+      { id: 'c1', label: 'عدم وجود تسريبات كيميائية أو روائح غير طبيعية', checked: false },
+      { id: 'c2', label: 'سلامة أحواض الترسيب ومضخات المعالجة', checked: false },
+      { id: 'c3', label: 'تواجد مجموعات احتواء الانسكاب (Spill Kits)', checked: false },
+      { id: 'c4', label: 'عمل لوحة المراقبة والتحذيرات الصوتية/الضوئية', checked: false },
+    ],
+  },
+  {
+    id: 'zone-6',
+    code: 'JOTUN-ZONE-06-WASTE-AREA',
+    name: 'منطقة المخلفات',
+    description: 'موقع فرز وتخزين المخلفات الصناعية والبراميل الفارغة والمواد الخطرة',
+    isScanned: false,
+    status: 'unvisited',
+    notes: '',
+    checklist: [
+      { id: 'c1', label: 'فصل المخلفات الخطرة عن المخلفات العادية', checked: false },
+      { id: 'c2', label: 'إحكام غلق براميل المذيبات والكيماويات التالفة', checked: false },
+      { id: 'c3', label: 'توافر طفايات البودرة ورغوة الإطفاء بالموقع', checked: false },
+      { id: 'c4', label: 'حظر التدخين أو أي مصادر للهب المفتوح بشكل صارم', checked: false },
+    ],
+  },
+  {
+    id: 'zone-7',
+    code: 'JOTUN-ZONE-07-RAW-MATERIALS-DOCK',
+    name: 'رصيف الخامات',
+    description: 'منطقة تفريغ واستلام المواد الخام والراتنجات والصبغات',
+    isScanned: false,
+    status: 'unvisited',
+    notes: '',
+    checklist: [
+      { id: 'c1', label: 'تثبيت باليتات المواد الخام والتأكد من استقرار الرصات', checked: false },
+      { id: 'c2', label: 'سلامة الأسطح وخلوها من تسريبات البودرة أو البوليمرات', checked: false },
+      { id: 'c3', label: 'فحص التوصيل الأرضي (Earth Grounding) أثناء التفريغ', checked: false },
+      { id: 'c4', label: 'صلاحية مخارج الطوارئ ومسارات الهروب', checked: false },
+    ],
+  },
+  {
+    id: 'zone-8',
+    code: 'JOTUN-ZONE-08-ZONES-STREET',
+    name: 'شارع الزونات',
+    description: 'الممر الشرياني الفاصل بين مناطق التصنيع والمستودعات ومحطات الدعم',
+    isScanned: false,
+    status: 'unvisited',
+    notes: '',
+    checklist: [
+      { id: 'c1', label: 'وضوح الخطوط الأرضية وممرات المشاة المخصصة', checked: false },
+      { id: 'c2', label: 'خلو الشارع من أي عوائق لسيارات الإطفاء والإسعاف', checked: false },
+      { id: 'c3', label: 'التزام معدات النقل بحدود السرعة المقررة (15 كم/س)', checked: false },
+      { id: 'c4', label: 'إنارة الشارع وأعمدة الطوارئ تعمل بكفاءة كاملة', checked: false },
+    ],
+  },
+  {
+    id: 'zone-9',
+    code: 'JOTUN-ZONE-09-PRODUCTION',
+    name: 'عنابر الإنتاج',
+    description: 'خطوط تصنيع وخلط وتعبئة دهانات يوتن والمختبرات المجاورة',
+    isScanned: false,
+    status: 'unvisited',
+    notes: '',
+    checklist: [
+      { id: 'c1', label: 'كفاءة مراوح وسحب أبخرة المذيبات (Ventilation)', checked: false },
+      { id: 'c2', label: 'التزام العاملين بمهمات الوقاية (أقنعة، نظارات، أحذية أمان)', checked: false },
+      { id: 'c3', label: 'خلو ممرات خطوط الإنتاج من الخراطيم والأسلاك العشوائية', checked: false },
+      { id: 'c4', label: 'جاهزية أزرار الإيقاف في حالات الطوارئ (E-Stops)', checked: false },
+    ],
+  },
+];
+
+export const INITIAL_METERS: {
+  jockey: MeterReading;
+  diesel1: MeterReading;
+  diesel2: MeterReading;
+} = {
+  jockey: {
+    id: 'jockey',
+    name: 'عداد مضخة الجوكي',
+    subTitle: 'Jockey Fire Pump (الضغط المستمر لشبكة الحريق)',
+    pressureBar: '10.5',
+    hoursOrPsi: '150 PSI',
+    status: 'operational',
+    notes: 'الضغط مستقر على الشبكة الرئيسية',
+  },
+  diesel1: {
+    id: 'diesel1',
+    name: 'عداد مضخة الديزل 1',
+    subTitle: 'Diesel Fire Pump 1 (المضخة الرئيسية للإنذار والحريق)',
+    pressureBar: '11.0',
+    hoursOrPsi: '342 ساعة',
+    fuelLevel: '95%',
+    status: 'operational',
+    notes: 'مستوى الوقود والزيت مشحون بالكامل',
+  },
+  diesel2: {
+    id: 'diesel2',
+    name: 'عداد مضخة الديزل 2',
+    subTitle: 'Diesel Fire Pump 2 (المضخة الاحتياطية للطوارئ القصوى)',
+    pressureBar: '11.0',
+    hoursOrPsi: '286 ساعة',
+    fuelLevel: '90%',
+    status: 'operational',
+    notes: 'المحرك في وضع الاستعداد الآلي Auto',
+  },
+};
